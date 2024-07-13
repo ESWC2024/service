@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>실종자 찾기</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header>
+    <h1>실종자 찾기</h1>
+    <nav>
+        <ul>
+            <li><a href="/">홈</a></li>
+            <li><a href="/missing-person">실종자 찾기</a></li>
+            <li><a href="/register-missing-person">실종자 등록</a></li>
+            <li><a href="/register-guardian">보호자 등록</a></li>
+            <li><a href="/find-lost-place">잃어버린 장소 찾기</a></li>
+            <li><a href="/contact">문의하기</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section>
+        <h2>실종자 찾기</h2>
+        <!-- Thymeleaf 문법을 사용하여 동적으로 실종자 찾기 기능을 구현할 수 있습니다 -->
+        <form action="/api/ai/find-missing-person" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*">
+            <button type="submit">실종자 찾기</button>
+        </form>
+        <!-- 실종자 찾기 결과를 동적으로 표시할 수 있습니다 -->
+        <div th:if="${foundPerson}" class="result">
+            <h3>찾은 실종자 정보</h3>
+            <p th:text="${foundPerson}"></p>
+        </div>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2024 실종자 찾기 서비스</p>
+</footer>
+</body>
+</html>
